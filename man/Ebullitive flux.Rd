@@ -34,7 +34,7 @@ This code is similar to the code used in the scientific peer-reviewed article SÃ
 }
 \value{
 A data frame containing the following
-  \item{station}{The station provided}
+  \item{station}{The station provided to the input 'station'}
   \item{PumpCycle}{Cycle number}
   \item{datetime_start}{Start time of the cycle}
   \item{datetime_end}{End time of the cycle}
