@@ -1,12 +1,11 @@
 # FluxSeparator
 
-```
-remotes::install_github('JonasStage/FluxSeparator')
-```
 
 This package is dedicated to CH4 and CO2 sensors created by Jonas Stage Sø (Sø et al., 2023). Sensors are made following Bastviken et al. (2020), however modified for automated fluxes and lower power consumption by Jonas Stage Sø, University of Southern Denmark, Denmark. Furthermore, high bit sensors and methane divers were created. Files include PCB designs and code for setting up sensors and processing data. Everything is licensed under the MIT License.
 
-
+```
+remotes::install_github('JonasStage/FluxSeparator')
+```
 
 
 Citations
