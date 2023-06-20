@@ -42,25 +42,30 @@ Jonas Stage Sø
 \examples{
 library(FluxSeparator)
 
-model_coef <- read_csv("model_coef.csv")  ## read in model coef
+# read in model coef
+model_coef <- read_csv("model_coef.csv")
 
-path_to_files <- list.files(pattern = ".csv") ## path to DIY sensors files
+# path to DIY sensors files
+path_to_files <- list.files(pattern = ".csv")
 
+# create data frame for path, sensor, and station (if needed).
 data_path <- tibble(path = path_to_files,
                     sensor = c(1,2,3,4),
                     station = c(1,2,4,3))
-                    ## create data frame for path, sensor, and station (if needed).
 
+
+# join with model_coef and calculate CH4 in ppm.
 read_CH4_files(data_path,
-               path) ## join with model_coef and calculate CH4 in ppm.
+               path)
 
 #### Example using join_model_coef = FALSE ####
 
+# join with model_coef.
 joined_data_path <- left_join(data_path, model_coef, by = join_by(sensor))
-                     ## join with model_coef.
 
+# calculate CH4 in ppm.
 read_CH4_files(joined_data_path,
                path,
-               join_model_coef = FALSE) ## calculate CH4 in ppm.
+               join_model_coef = FALSE)
 
 }

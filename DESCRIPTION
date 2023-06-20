@@ -9,3 +9,7 @@ Description: Separates the diffusive and ebullitive fluxes based on a running va
 License: MIT License
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 2.10), lubridate (>= 1.9.2), tidyverse (>= 2.0.0), TTR (>= 0.24.3), ggpubr (>= 0.6.0)
+Imports: 
+    lubridate

@@ -64,8 +64,10 @@ Jonas Stage Sø.
 \examples{
 library(FluxSeparator)
 
+# Load dummy dataset
+DIY_sensor_data <-  data(DIY_sensor_data)
 
-data %>%
+DIY_sensor_data %>%
   diffusive_flux()
 }
 

@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^/ignore_things$
+^data-raw$
+^/ignore_things/ignored\.R$
