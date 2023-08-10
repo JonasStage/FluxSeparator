@@ -1,6 +1,6 @@
-ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,IndexSpan = 30,runvar_cutoff = .05,
+ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_selection = "max",IndexSpan = 30,runvar_cutoff = .5,
                             show_plots = T, CH4_diffusion_cutoff = 1, number_of_pumpcycles_in_plot = 24,
-                            smooth_data = T) {
+                            smooth_data = F) {
   par(ask=T)
   GetIDsBeforeAfter = function(x,IndexSpan) {
     v = (x-IndexSpan) : (x+IndexSpan)
@@ -32,7 +32,7 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,Index
   if(smooth_present == 1) {
     data %>% rename(CH4 = CH4_smooth) -> data
   } else {
-    data %>% rename(CH4 = concentration_values) -> data
+    data %>% rename(CH4 = CH4_raw) -> data
   }
 
   data %>%
@@ -90,19 +90,38 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,Index
     filter(first < last) %>%
     bind_rows(filter(running_var, !row %in% ids_to_remain)) -> bubbles_check2
 
-  bubbles_check2 %>%
-    arrange(row) %>%
-    mutate(PumpCycle_Timediff = as.numeric(max(datetime)-min(datetime), units = "hours")) %>%
-    summarize(time_diff = max(datetime)-min(datetime),
-              min_datetime = datetime[which.min(CH4)],
-              max_datetime = datetime[which.max(CH4)],
-              datetime = mean(datetime),
-              min_CH4 = min(CH4, na.rm=T),
-              max_CH4 = max(CH4, na.rm=T),
-              CH4_diff = max_CH4-min_CH4,
-              PumpCycle_Timediff = mean(PumpCycle_Timediff),
-              temp = mean(tempC, na.rm=T)) %>%
-    ungroup() -> bubbles_detected
+
+  if(top_selection == "max") {
+    bubbles_check2 %>%
+      arrange(row) %>%
+      mutate(PumpCycle_Timediff = as.numeric(max(datetime)-min(datetime), units = "hours")) %>%
+      summarize(time_diff = max(datetime)-min(datetime),
+                min_datetime = datetime[which.min(CH4)],
+                max_datetime = datetime[which.max(CH4)],
+                datetime = mean(datetime),
+                min_CH4 = min(CH4, na.rm=T),
+                top_CH4 = max(CH4, na.rm=T),
+                CH4_diff = top_CH4-min_CH4,
+                PumpCycle_Timediff = mean(PumpCycle_Timediff),
+                temp = mean(tempC, na.rm=T)) %>%
+      ungroup() -> bubbles_detected
+  } else if (top_selection == "last") {
+    bubbles_check2 %>%
+      arrange(row) %>%
+      mutate(PumpCycle_Timediff = as.numeric(max(datetime)-min(datetime), units = "hours")) %>%
+      summarize(time_diff = max(datetime)-min(datetime),
+                min_datetime = datetime[which.min(CH4)],
+                max_datetime = datetime[which.max(CH4)],
+                datetime = mean(datetime),
+                min_CH4 = min(CH4, na.rm=T),
+                top_CH4 = last(CH4),
+                CH4_diff = top_CH4-min_CH4,
+                PumpCycle_Timediff = mean(PumpCycle_Timediff),
+                temp = mean(tempC, na.rm=T)) %>%
+      ungroup() -> bubbles_detected
+  } else {
+    print("top_selection can only be max or last")
+    }
 
   bubbles_detected %>%
     filter(CH4_diff > CH4_diffusion_cutoff & min_datetime < max_datetime) %>%
@@ -117,7 +136,7 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,Index
     bind_rows(no_bobler) %>%
     group_by(station,PumpCycle) %>%
     summarise(sum_bubbles_concentration = sum(sum_bobler),
-              n_bubbles = sum(n_bobler),
+              n_bubbles = max(n_bobler),
               pumpcycle_duration_hr = max(time),
               temp = mean(temp, na.rm=T),
               bubbles_per_time = n_bubbles/pumpcycle_duration_hr,
@@ -133,8 +152,10 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,Index
 
   if(show_plots) {for(i in unique(plotting_data$station)) {
     wp_select = i
-    bubbles_found %>% filter(station == wp_select) %>%
-      ungroup %>% summarize(n_bubles = sum(n_bubbles)) -> bubles_count
+    bubbles_found %>%
+      filter(station == wp_select) %>%
+      ungroup %>%
+      summarize(n_bubles = sum(n_bubbles)) -> bubles_count
     #cat("waypoint ",i," has a total of ",bubles_count$n_bubles, "bubbles\n")
     for(j in unique(filter(plotting_data, station == wp_select)$plot_number)){
       par(ask=T)
@@ -159,10 +180,10 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station,Index
         scale_y_continuous(limits=c(0,max(plot1_dat$run_var5,na.rm=T))) +
         scale_color_manual(limits = c("run_var5 > 0.1","run_var5 > 0.2","run_var5 > 0.5","run_var5 > 1"),
                            labels = c("Variance > 0.1","Variance > 0.2","Variance > 0.5","Variance > 1"),
-                           values = c("red","blue","green","orange")) +
+                           values = c("red","blue","green","black")) +
         labs(y = "Running variance", x = "Datetime", col = "") +
-        geom_hline(yintercept = plot1_dat$runvar_cutoff) + theme(legend.position=c(.9,.75))->graf2
-      ggarrange(graf1,graf2, align = "h", ncol = 1) ->p
+        geom_hline(yintercept = runvar_cutoff) + theme(legend.position=c(.9,.75))->graf2
+      ggarrange(graf1,graf2, ncol = 1) ->p
       print(p)
     }}} else {}
   par(ask=F)

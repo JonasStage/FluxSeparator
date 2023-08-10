@@ -8,14 +8,14 @@ Separates the diffusive and ebullitive fluxes, to calculate the diffusive flux, 
 }
 \usage{
 diffusive_flux(data, concentration_values = "pred_CH4",
-station, runvar_cutoff = 0.05,
+station, runvar_cutoff = 0.5,
 remove_observations_prior = 200,
 number_of_observations_used = 400,
 show_plots = TRUE, IndexSpan = 30,
 cutoff_start_value = 20,
 number_of_observations_required = 50,
 number_of_pumpcycles_in_plot = 50,
-smooth_data = TRUE)}
+smooth_data = FALSE)}
 \arguments{
   \item{data}{Your data frame.}
   \item{concentration_values}{Name of your variable representing the concentration.}

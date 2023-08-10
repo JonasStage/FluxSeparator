@@ -1,6 +1,6 @@
-diffusive_flux <- function(data, concentration_values = "pred_CH4", station, runvar_cutoff = 0.05, remove_observations_prior = 200,
+diffusive_flux <- function(data, concentration_values = "pred_CH4", station, runvar_cutoff = 0.5, remove_observations_prior = 200,
                            number_of_observations_used = 400, show_plots = T,IndexSpan = 30, cutoff_start_value = 20,
-                           number_of_observations_required = 50,number_of_pumpcycles_in_plot = 50, smooth_data = T) {
+                           number_of_observations_required = 50,number_of_pumpcycles_in_plot = 50, smooth_data = F) {
 
   GetIDsBeforeAfter = function(x,IndexSpan) {
     v = (x-IndexSpan) : (x+IndexSpan)
@@ -32,7 +32,7 @@ diffusive_flux <- function(data, concentration_values = "pred_CH4", station, run
   if(smooth_present == 1) {
     data %>% rename(CH4 = CH4_smooth) -> data
   } else {
-    data %>% rename(CH4 = concentration_values) -> data
+    data %>% rename(CH4 = CH4_raw) -> data
   }
 
 
@@ -125,7 +125,10 @@ diffusive_flux <- function(data, concentration_values = "pred_CH4", station, run
                     method = "lm", se =F, linewidth = 2) +
         ggtitle(i) +
         scale_color_gradient(limits = c(0,1), low = "red",high = "green") +
-        labs(y = bquote("CH"[4]*" concentration (ppm)"), x = "Datetime", col = bquote("r"^2)) ->p
+        labs(y = bquote("CH"[4]*" concentration (ppm)"),
+             x = "Datetime",
+             col = bquote("r"^2*"       ")) +
+        guides(col = guide_colourbar(barwidth = 20))->p
       print(p);print(i)
     }}} else {}
   par(ask=F)
