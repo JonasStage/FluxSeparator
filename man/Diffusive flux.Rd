@@ -12,10 +12,11 @@ station, runvar_cutoff = 0.5,
 remove_observations_prior = 200,
 number_of_observations_used = 400,
 show_plots = TRUE, IndexSpan = 30,
-cutoff_start_value = 20,
+cutoff_start_value,
 number_of_observations_required = 50,
 number_of_pumpcycles_in_plot = 50,
-smooth_data = FALSE)}
+smooth_data = FALSE,
+look_for_bubbles = TRUE)}
 \arguments{
   \item{data}{Your data frame.}
   \item{concentration_values}{Name of your variable representing the concentration.}
@@ -29,6 +30,7 @@ smooth_data = FALSE)}
   \item{number_of_observations_required}{Number of observations required in each cycle for the function to compute a linear model on the data}
   \item{number_of_pumpcycles_in_plot}{Number of cycles which are plotted. Used only if show_plots = TRUE.}
   \item{smooth_data}{Computes a running mean on the concentration data five times, to smoothen data if data is low bit resolution. See Sø et al., (2023) for more information}
+  \item{look_for_bubbles}{Can be used for the function to not consider ebullitive events. Can be useful when calculating diffusive CO2 flux}
 
 }
 \details{
