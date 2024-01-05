@@ -54,7 +54,7 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_
     mutate(time_diff = datetime -lag(datetime),
            time_diff = as.numeric(time_diff)) %>%
     drop_na(time_diff) %>%
-    mutate(gruppering =  1 + cumsum(time_diff>6)) %>%
+    mutate(gruppering =  1 + cumsum(time_diff>30)) %>%
     group_by(gruppering) %>%
     pull(row) %>%
     map(~GetIDsBeforeAfter(., IndexSpan)) %>%
@@ -80,7 +80,7 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_
            time_diff = as.numeric(time_diff)) %>%
     drop_na(time_diff) %>%
     group_by(station, PumpCycle) %>%
-    mutate(gruppering =  1 + cumsum(time_diff>6)) %>%
+    mutate(gruppering =  1 + cumsum(time_diff>30)) %>%
     group_by(station,gruppering,PumpCycle) %>%
     mutate(first = first(concentration),
            last = last(concentration),

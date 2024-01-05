@@ -26,7 +26,7 @@ smooth_data = FALSE)}
   \item{runvar_cutoff}{Cutoff of the running variance, which is used to determine if an increase in concentration is an ebullitive event. Lower values increases number of ebullitive events registered.}
   \item{show_plots}{Show plots which can assist in the determination of good fits for the model. A boolean variable which should be TRUE or FALSE.}
   \item{IndexSpan}{Number of observations which are included before and after an ebullitive event, to ensure the entire event is determined.}
-  \item{CH4_diffusion_cutoff}{A variable used to set a minimum concentration change that is considered an ebullitive event.}
+  \item{concentration_diffusion_cutoff}{A variable used to set a minimum concentration change that is considered an ebullitive event.}
   \item{number_of_pumpcycles_in_plot}{Number of cycles which are plotted. Used only if show_plots = TRUE.}
   \item{smooth_data}{Computes a running mean on the concentration data five times, to smoothen data if data is low bit resolution. See Sø et al., (2023) for more information}
 

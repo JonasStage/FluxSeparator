@@ -49,7 +49,7 @@ if(look_for_bubbles) {
     mutate(time_diff = datetime -lag(datetime),
            time_diff = as.numeric(time_diff)) %>%
     drop_na(time_diff) %>%
-    mutate(gruppering =  1 + cumsum(time_diff>6)) %>%
+    mutate(gruppering =  1 + cumsum(time_diff>30)) %>%
     group_by(gruppering) %>%
     pull(row) %>%
     map(~GetIDsBeforeAfter(., IndexSpan)) %>%
@@ -61,7 +61,7 @@ if(look_for_bubbles) {
     mutate(time_diff = datetime -lag(datetime),
            time_diff = as.numeric(time_diff)) %>%
     drop_na(time_diff) %>%
-    mutate(gruppering =  1 + cumsum(time_diff>6)) %>%
+    mutate(gruppering =  1 + cumsum(time_diff>30)) %>%
     arrange(row) %>%
     {. ->> bubbles_diff} %>%
     group_by(PumpCycle,station) %>%
@@ -107,7 +107,6 @@ if(look_for_bubbles) {
 
   plotting_data <- dif_check %>%
     left_join(model_check, by = c("PumpCycle","station")) %>%
-    drop_na(r2) %>%
     mutate(plot_number = floor(PumpCycle/number_of_pumpcycles_in_plot))
   data_indelt <- data %>%
     mutate(plot_number = floor(PumpCycle/number_of_pumpcycles_in_plot))
