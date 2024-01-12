@@ -7,6 +7,9 @@ This package is dedicated to CH4 and CO2 sensors created by Jonas Stage Sø (Sø
 remotes::install_github('JonasStage/FluxSeparator')
 ```
 
+For citing this package follow the instructions on https://zenodo.org/doi/10.5281/zenodo.8297153
+Jonas Stage Sø. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154
+
 
 Citations
 
