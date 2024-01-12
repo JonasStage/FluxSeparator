@@ -1,0 +1,17 @@
+Package: FluxSeparator
+Type: Package
+Title: Separation of diffusive and ebullitive fluxes.
+Version: 0.1.0
+Author: Jonas Stage Sø
+Year: 2024
+Maintainer: Jonas Stage Sø <Jonassoe@biology.sdu.dk>
+Description: Separates the diffusive and ebullitive fluxes based on a running variance approach, as used in the scientific paper Sø et al., (2023).
+  Aids the import of files from the DIY CH4 and CO2 sensors.
+URL: https://doi.org/10.5281/zenodo.8297154
+License: MIT License
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 2.10), lubridate (>= 1.9.2), tidyverse (>= 2.0.0), TTR (>= 0.24.3), ggpubr (>= 0.6.0)
+Imports: 
+    lubridate
