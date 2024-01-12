@@ -63,7 +63,7 @@ diff_flux <- DIY_sensor_data %>%
 ```
 The _diffusive_flux_ function allows for calculation of diffusive flux before any ebullitive events or disregarding ebullitive events (_look_for_bubbles = FALSE_). The diffusive flux is calculated by a linear model and the corresponding slope, R<sup>2</sup> and number of observations is the result. The _runvar_cutoff_ for each sensor should be set to the same value as the corresponding _ebullitive_flux_.
 
-### Conversion from ppm to µmol m<sup>-2</sup> h<sup>-1</sup>
+### Conversion from ppm h<sup>-1</sup> to µmol m<sup>-2</sup> h<sup>-1</sup>
 ```
 # Using the ebullitive flux function
 DIY_sensor_data %>%
