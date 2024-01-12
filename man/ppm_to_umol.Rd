@@ -44,15 +44,26 @@ Jonas Stage Sø.
 \examples{
 library(FluxSeparator)
 
-# Load dummy dataset
-DIY_sensor_data <-  data(DIY_sensor_data)
+# Conversion of ppm h-1 to µmol m-2 h-1
+# See ?ebullitive_flux or ?diffusive_flux for help with the respective functions
 
+# Using the ebullitive flux function
 DIY_sensor_data %>%
-  mutate(umol_flux = ppm_to_umol(pressure,
-                                 concentration,
-                                 volume,
-                                 temperature_C,
-                                 area))
+  ebullitive_flux() %>%
+  mutate(umol_m2_h1_flux = ppm_to_umol(pressure,
+                                       concentration_per_time,
+                                       volume,
+                                       temp,
+                                       area))
+
+# Using the diffusive flux function
+DIY_sensor_data %>%
+  diffusive_flux() %>%
+  mutate(umol_m2_h1_flux = ppm_to_umol(pressure,
+                                       concentration_per_time,
+                                       volume,
+                                       temp,
+                                       area))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

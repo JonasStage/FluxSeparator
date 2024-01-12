@@ -42,7 +42,7 @@ A data frame containing the following
   \item{PumpCycle}{Cycle number}
   \item{datetime_start}{Start time of the cycle}
   \item{datetime_end}{End time of the cycle}
-  \item{slope_CH4_hr}{The diffusiv flux per hour}
+  \item{slope_concentration_hr}{The diffusiv flux per hour}
   \item{n_obs_included_in_lm}{Number of observations used to calculate the diffusive flux}
   \item{r2}{Variance explained by the linear model}
   \item{temp}{Average temperature within the chamber}
@@ -66,7 +66,7 @@ Jonas Stage Sø.
 \examples{
 library(FluxSeparator)
 
-# Load dummy dataset
+# Load dataset
 DIY_sensor_data <-  data(DIY_sensor_data)
 
 DIY_sensor_data %>%

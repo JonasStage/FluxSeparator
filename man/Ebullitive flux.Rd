@@ -11,10 +11,10 @@ Separates the diffusive and ebullitive fluxes, to calculate the ebullitive flux,
 \usage{
 ebullitive_flux(data,
 concentration_values = "pred_CH4",
-station, top_selection = "max",
+station, top_selection = "last",
 runvar_cutoff = .5,
 show_plots = TRUE, IndexSpan = 30,
-CH4_diffusion_cutoff = 1,
+concentration_diffusion_cutoff = 1,
 number_of_pumpcycles_in_plot = 24,
 smooth_data = FALSE)}
 
@@ -22,7 +22,7 @@ smooth_data = FALSE)}
   \item{data}{Your data frame.}
   \item{concentration_values}{Name of your variable representing the concentration.}
   \item{station}{Variable to distinguish between stations.}
-  \item{top_selection}{Can be set to "max" or "last" to either use the maximum concentration value or the last in each ebullitive event.}
+  \item{top_selection}{Can be set to "last" or "max" to either use the last or maximum concentration value in each ebullitive event.}
   \item{runvar_cutoff}{Cutoff of the running variance, which is used to determine if an increase in concentration is an ebullitive event. Lower values increases number of ebullitive events registered.}
   \item{show_plots}{Show plots which can assist in the determination of good fits for the model. A boolean variable which should be TRUE or FALSE.}
   \item{IndexSpan}{Number of observations which are included before and after an ebullitive event, to ensure the entire event is determined.}
@@ -65,7 +65,7 @@ Jonas Stage Sø
 \examples{
 library(FluxSeparator)
 
-# Load dummy dataset
+# Load dataset
 DIY_sensor_data <-  data(DIY_sensor_data)
 
 DIY_sensor_data %>%

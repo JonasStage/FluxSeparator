@@ -48,7 +48,7 @@ model_coef <- read_csv("model_coef.csv")
 # path to DIY sensors files
 path_to_files <- list.files(pattern = ".csv")
 
-# create data frame for path, sensor, and station (if needed).
+# create data frame for path, sensor and station.
 data_path <- tibble(path = path_to_files,
                     sensor = c(1,2,3,4),
                     station = c(1,2,4,3))
