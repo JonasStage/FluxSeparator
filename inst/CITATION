@@ -1,0 +1,13 @@
+citHeader("To cite FluxSeparator in publications use:")
+
+citEntry(
+  entry    = "Misc",
+  title    = "FluxSeparator - Separation of diffusive and ebullitive fluxes",
+  author   = "Jonas Stage Sø",
+  year     = "2023",
+  doi      = "https://doi.org/10.5281/zenodo.8297154",
+  url      = "https://github.com/JonasStage/FluxSeparator",
+  textVersion = paste(
+"Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154"
+  )
+)

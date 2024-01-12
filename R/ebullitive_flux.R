@@ -1,4 +1,4 @@
-ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_selection = "max",IndexSpan = 30,runvar_cutoff = .5,
+ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_selection = "last",IndexSpan = 30,runvar_cutoff = .5,
                             show_plots = T, concentration_diffusion_cutoff = 1, number_of_pumpcycles_in_plot = 24,
                             smooth_data = F) {
   par(ask=T)
