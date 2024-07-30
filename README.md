@@ -8,6 +8,8 @@ For citing this package follow the instructions on https://zenodo.org/doi/10.528
 
 Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154
 
+For further information on package and usage see [Sø et al 2024](https://doi.org/10.1029/2024JG008035)
+
 ```
 remotes::install_github('JonasStage/FluxSeparator')
 ```
