@@ -168,7 +168,7 @@ ebullitive_flux <- function(data,concentration_values = "pred_CH4",station, top_
                    aes(xintercept= datetime_bubbles), col = "red")+
         scale_x_datetime(limits=c(min(plot1_dat$datetime), max(plot1_dat$datetime))) +
         scale_y_continuous(limits=c(min(plot1_dat$concentration,na.rm=T), max(plot1_dat$concentration,na.rm=T))) +
-        labs(y = bquote("CH"[4]*" concentration (ppm)"),
+        labs(y = bquote("Concentration"),
              x = "Datetime",
              title = paste0("This is station: ",i)) -> graf1
       ggplot() +

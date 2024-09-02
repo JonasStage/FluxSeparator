@@ -140,7 +140,7 @@ if(show_plots){
         geom_smooth(data = plot_lm, aes(datetime, concentration, group = PumpCycle, col = r2),
                     method = "lm", se =F, linewidth = 2, formula = y ~ x) +
         scale_color_gradient(limits = c(0,1), low = "red",high = "green") +
-        labs(y = bquote("CH"[4]*" concentration (ppm)"),
+        labs(y = bquote("Concentration"),
              x = "Datetime",
              col = bquote("R"^2*"       "),
              title = paste0("This is station: ",i)) +
