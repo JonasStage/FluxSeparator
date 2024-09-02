@@ -138,13 +138,14 @@ if(show_plots){
       ggplot() +
         geom_point(data = plot_raw, aes(datetime, concentration, group = PumpCycle)) +
         geom_smooth(data = plot_lm, aes(datetime, concentration, group = PumpCycle, col = r2),
-                    method = "lm", se =F, linewidth = 2, formula = y ~ x) +
+                    method = "lm", se =F, linewidth = 2, formula = y ~ x,orientation = "y") +
         scale_color_gradient(limits = c(0,1), low = "red",high = "green") +
         labs(y = bquote("Concentration"),
              x = "Datetime",
              col = bquote("R"^2*"       "),
              title = paste0("This is station: ",i)) +
         guides(col = guide_colourbar(barwidth = 20)) +
+        scale_x_datetime()+
         theme(legend.position = "bottom") ->p
       print(p)
     }}} else {}
