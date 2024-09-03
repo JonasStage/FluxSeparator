@@ -10,7 +10,7 @@ ppm_to_umol(pressure, concentration, volume, temperature_C, area)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pressure}{Air pressure during measurement.}
+  \item{pressure}{Air pressure during measurement (Pa).}
   \item{concentration}{Concentration of the gas in ppm (µmol/mol).}
   \item{volume}{Volume of the chamber used for measuring in \eqn{m^{3}}.}
   \item{temperature_C}{Temperature in degrees celcius in the chamber.}
