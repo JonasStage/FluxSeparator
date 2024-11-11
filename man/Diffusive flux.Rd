@@ -48,14 +48,16 @@ A data frame containing the following
   \item{PumpCycle}{Cycle number}
   \item{datetime_start}{Start time of the cycle}
   \item{datetime_end}{End time of the cycle}
-  \item{slope_concentration_hr}{The diffusiv flux per hour}
+  \item{slope_concentration_hr}{The diffusiv flux per hour (ppm \eqn{h^{-1}})}
   \item{n_obs_included_in_lm}{Number of observations used to calculate the diffusive flux}
   \item{r2}{Variance explained by the linear model}
-  \item{temp}{Average temperature within the chamber}
-  \item{c0}{Concentration at time 0. Here the first observation in the linear model is used. Only given if the Hutchinson-Mosier correction is done}
-  \item{c1}{Concentration at time t1. Here the median concentration from the linear model is used. Only given if the Hutchinson-Mosier correction is done}
-  \item{c2}{Concentration at time t2 (=2t1). Here the last observation in the linear model is used. Only given if the Hutchinson-Mosier correction is done}
-  \item{t1}{Seconds after start for until the median concentration. Only given if the Hutchinson-Mosier correction is done}
+  \item{temp}{Average temperature within the chamber (C)}
+  \item{hmr_slope}{Flux calculated using the HMR package (ppm \eqn{h^{-1}}). This is only returned if the method selected by the HMR package is either \emph{Hutchinson-Mosier correction} or \emph{No flux}, in case of \emph{LR} used the function will return NA. Only given if the Hutchinson-Mosier correction is calculated}
+  \item{hmr_se}{Standard error of the \emph{hmr_slope}. This is only returned if the method selected by the \emph{hmr_slope} is calculated.}
+  \item{hmr_pvalue}{The p-value for the null hypothesis of zero flux. This is only returned if the method selected by the \emph{hmr_slope} is calculated.}
+  \item{hmr_lower95}{The lower end-point of the 95\%-confidence interval for the flux. This is only returned if the method selected by the \emph{hmr_slope} is calculated.}
+  \item{hmr_upper95}{The upper end-point of the 95\%-confidence interval for the flux. This is only returned if the method selected by the \emph{hmr_slope} is calculated.}
+  \item{method}{The method used for by the HMR package to calculate flux. This is only returned if the method selected by the \emph{hmr_slope} is calculated.}
   }
 }
 \references{
@@ -71,7 +73,7 @@ Pullens, J.W.M., Abalos, D., Petersen, S.O. and Pedersen, A.R. (2023). Identifyi
 Jonas Stage Sø.
 }
 \note{
-%%  ~~further notes~~
+For information on the Hutchinson-Mosier correction see the HMR-package
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
