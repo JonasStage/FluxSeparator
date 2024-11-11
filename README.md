@@ -6,9 +6,10 @@ Determination of ebullitive events is characterized by sudden increase in concen
 
 For citing this package follow the instructions on https://zenodo.org/doi/10.5281/zenodo.8297153
 
-Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154
+Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. 
+[Sø et al 2024](https://doi.org/10.1029/2024JG008035)
 
-For further information on package and usage see [Sø et al 2024](https://doi.org/10.1029/2024JG008035)
+Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. [DOI](https://doi.org/10.5281/zenodo.8297154)
 
 ```
 remotes::install_github('JonasStage/FluxSeparator')
@@ -90,5 +91,8 @@ The _ppm_to_umol_ function allows for conversion of ppmV h<sup>-1</sup> to µmol
 
 ## Citations
 
-Sø, J. S., Sand-Jensen, K., Martinsen, K. T., Polauke, E., Kjær, J. E., Reitzel, K., & Kragh, T. (2023). Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. Science of the Total Environment, 878, 162895. doi:https://doi.org/10.1016/j.scitotenv.2023.162895
+[Sø, J. .S, Sand-Jensen, K., Kragh, T. (2024). Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments](https://doi.org/10.1029/2024JG008035)
+
+
+[Sø, J. S., Sand-Jensen, K., Martinsen, K. T., Polauke, E., Kjær, J. E., Reitzel, K., & Kragh, T. (2023). Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. Science of the Total Environment, 878, 162895.](https://doi.org/10.1016/j.scitotenv.2023.162895)
 
