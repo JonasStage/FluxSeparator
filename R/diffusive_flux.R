@@ -11,7 +11,7 @@ diffusive_flux <- function(data, concentration_values = "pred_CH4", station, run
 if(smooth_data) {
     data %>%
       drop_na(concentration_values) %>%
-      group_by(PumpCycle,sensor) %>%
+      group_by(PumpCycle,station) %>%
       rename(concentration_raw = any_of(concentration_values)) %>%
       add_tally(name = "obs_in_PumpCycle") %>%
       filter(obs_in_PumpCycle > 100) %>%
@@ -81,8 +81,8 @@ if(look_for_bubbles) {
 
   diffusive_dataset %>%
     filter(between(row_number(),remove_observations_prior,(remove_observations_prior+number_of_observations_used))) %>%
-    {. ->> dif_check} %>%
     mutate(time = datetime-min(datetime)) %>%
+    {. ->> dif_check} %>%
     nest() %>%
     mutate(model = map(data, ~lm(concentration ~ time, data = .)),
            slope = map(model, coef),
@@ -94,11 +94,7 @@ if(look_for_bubbles) {
            datetime_start = map_dbl(data, ~min(.$datetime, na.rm=T)),
            datetime_start = as_datetime(datetime_start),
            datetime_end = map_dbl(data, ~max(.$datetime, na.rm=T)),
-           datetime_end = as_datetime(datetime_end),
-           c0 = map_dbl(data, ~first(.$concentration)),
-           c1 = map_dbl(data, ~nth(.$concentration, n = round(n/2))),
-           c2 = map_dbl(data, ~last(.$concentration)),
-           t1 = map_dbl(data, ~nth(.$time,n = round(n/2)))) %>%
+           datetime_end = as_datetime(datetime_end)) %>%
     unnest_wider(slope) %>%
     rename(n_obs_included_in_lm = n) %>%
     filter(start_value < cutoff_start_value,
@@ -107,12 +103,37 @@ if(look_for_bubbles) {
            station = station) -> diffusive_results
 
 if(Hutchinson_Mosier_correction) {
-Hutchinson_Mosier_correction_function <- function(c0 = c0, c1 = c1, c2 = c2, t1 = t1){
-  ((volume*(c1-c0)^2)/(area*t1*(2*c1-c2-c0)))*log((c1-c0)/(c2-c1))
-  }
-diffusive_results %>%
-  mutate(corrected_slope_concentration_hr = Hutchinson_Mosier_correction_function(c0,c1,c2,t1)*3600) %>%
-  select(station,datetime_start,datetime_end,slope_concentration_hr,any_of("corrected_slope_concentration_hr"),c0,c1,c2,t1,n_obs_included_in_lm, r2,temp)-> diffusive_flux
+  diffusive_dataset %>%
+    mutate(time = as.numeric(datetime-min(datetime))) %>%
+    filter(between(row_number(),remove_observations_prior,(remove_observations_prior+number_of_observations_used))) %>%
+    ungroup() %>%
+    cbind(volume,area) %>%
+    mutate(concentration = concentration+abs(min(concentration))+1,
+           id = paste0(station,"___",PumpCycle)) %>%
+    select(id, volume, area, time,concentration) %>%
+    arrange(time) %>%
+    write_csv(., file = paste0(tempdir(),"/FluxSeparator.csv"))
+
+  wd <- getwd()
+  setwd(tempdir())
+  HMR("FluxSeparator.csv", sep = ",",IfNoValidHMR = "No flux",FollowHMR = T) -> hmr
+  setwd(wd)
+
+  hmr %>%
+    tibble() %>%
+    separate(Series, c("station","PumpCycle", sep = "___")) %>%
+    select(-"___") %>%
+    cbind(volume,area) %>%
+    mutate(across(f0:f0.up95, ~(parse_number(.x)*area/volume)*3600),
+           PumpCycle = parse_number(PumpCycle)) %>%
+    select(station:Method) %>%
+    rename(hmr_slope = f0, hmr_se = f0.se, hmr_pvalue = f0.p, hmr_lower95 = f0.lo95, hmr_upper95 = f0.up95, method = Method) %>%
+    filter(!method == "LR")-> hmr_results
+
+  diffusive_results %>%
+    left_join(hmr_results,
+                    by = join_by(station, PumpCycle)) %>%
+    select(station,datetime_start,datetime_end,slope_concentration_hr,n_obs_included_in_lm, r2,temp, hmr_slope:method)-> diffusive_flux
 } else {
       diffusive_results %>%
         select(station,datetime_start,datetime_end,slope_concentration_hr,n_obs_included_in_lm, r2,temp)-> diffusive_flux

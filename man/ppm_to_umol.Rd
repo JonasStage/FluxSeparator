@@ -27,9 +27,9 @@ ppm_to_umol(pressure, concentration, volume, temperature_C, area)
 %% ...
 }
 \references{
-Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. DOI: https://doi.org/10.1029/2024JG008035
-
 Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. DOI: http://dx.doi.org/10.1016/j.scitotenv.2023.162895.
+
+Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. DOI: https://doi.org/10.1029/2024JG008035
 }
 \author{
 Jonas Stage Sø.

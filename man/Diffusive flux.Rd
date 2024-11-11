@@ -34,13 +34,13 @@ area)}
   \item{number_of_pumpcycles_in_plot}{Number of cycles which are plotted. Used only if show_plots = TRUE.}
   \item{smooth_data}{Computes a running mean on the concentration data five times, to smoothen data if data is low bit resolution. See Sø et al., (2023) for more information}
   \item{look_for_bubbles}{Can be used for the function to not consider ebullitive events. Can be useful when calculating diffusive CO2 flux}
-  \item{Hutchinson_Mosier_correction}{Can be used to correct flux measurements based on the Hutchinson-Mosier equation (1981). However, fluxes are only calculated of three points. A boolean variable which should be TRUE or FALSE}
-  \item{volume}{Volume of the chamber used for calculating fluxes. This is only needed if the calculation of the Hutchinson_Mosier_correction = TRUE}
-  \item{area}{Surface area of the chamber used for calculating fluxes. This is only needed if the calculation of the Hutchinson_Mosier_correction = TRUE}
+  \item{Hutchinson_Mosier_correction}{Can be used to correct flux measurements based on the Hutchinson-Mosier correction (1981). However, fluxes are only calculated of three points. A boolean variable which should be TRUE or FALSE}
+  \item{volume}{Volume of the chamber used for calculating fluxes (L). This is only needed if the calculation of the Hutchinson_Mosier_correction = TRUE}
+  \item{area}{Surface area of the chamber used for calculating fluxes \eqn{m^{2}}. This is only needed if the calculation of the Hutchinson_Mosier_correction = TRUE}
 
 }
 \details{
-This code is similar to the code used in the scientific peer-reviewed article Sø et al., (2023). DOI: http://dx.doi.org/10.1016/j.scitotenv.2023.162895.
+This code is similar to the code used in the scientific peer-reviewed article Sø et al., (2023).
 }
 \value{
 A data frame containing the following
@@ -49,18 +49,23 @@ A data frame containing the following
   \item{datetime_start}{Start time of the cycle}
   \item{datetime_end}{End time of the cycle}
   \item{slope_concentration_hr}{The diffusiv flux per hour}
-  \item{corrected_slope_concentration_hr}{The diffusiv flux per hour corrected according to the Hutchinson-Mosier equation}
+  \item{n_obs_included_in_lm}{Number of observations used to calculate the diffusive flux}
+  \item{r2}{Variance explained by the linear model}
+  \item{temp}{Average temperature within the chamber}
   \item{c0}{Concentration at time 0. Here the first observation in the linear model is used. Only given if the Hutchinson-Mosier correction is done}
   \item{c1}{Concentration at time t1. Here the median concentration from the linear model is used. Only given if the Hutchinson-Mosier correction is done}
   \item{c2}{Concentration at time t2 (=2t1). Here the last observation in the linear model is used. Only given if the Hutchinson-Mosier correction is done}
   \item{t1}{Seconds after start for until the median concentration. Only given if the Hutchinson-Mosier correction is done}
-  \item{n_obs_included_in_lm}{Number of observations used to calculate the diffusive flux}
-  \item{r2}{Variance explained by the linear model}
-  \item{temp}{Average temperature within the chamber}
   }
 }
 \references{
 Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. DOI: http://dx.doi.org/10.1016/j.scitotenv.2023.162895.
+
+Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. DOI: https://doi.org/10.1029/2024JG008035
+
+Hutchinson, G.L. and Mosier, A.R. (1981). Improved soil cover method for field measurement of nitrous oxide fluxes. Soil Science Society of America Journal, 45, pp. 311-316
+
+Pullens, J.W.M., Abalos, D., Petersen, S.O. and Pedersen, A.R. (2023). Identifying criteria for greenhouse gas flux estimation with automatic and manual chambers: A case study for N2O. Euro-pean Journal of Soil Science, 74, e13340. https://doi.org/10.1111/ejss.13340
 }
 \author{
 Jonas Stage Sø.
