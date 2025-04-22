@@ -49,6 +49,7 @@ A data frame containing the following
   \item{datetime_start}{Start time of the cycle}
   \item{datetime_end}{End time of the cycle}
   \item{slope_concentration_hr}{The diffusiv flux per hour (ppm \eqn{h^{-1}})}
+  \item{slope_standard_error}{The standard error of the flux}
   \item{n_obs_included_in_lm}{Number of observations used to calculate the diffusive flux}
   \item{r2}{Variance explained by the linear model}
   \item{temp}{Average temperature within the chamber (C)}

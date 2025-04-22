@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 ignore_things
+.DS_Store

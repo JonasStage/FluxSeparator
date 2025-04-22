@@ -85,22 +85,25 @@ if(look_for_bubbles) {
     {. ->> dif_check} %>%
     nest() %>%
     mutate(model = map(data, ~lm(concentration ~ time, data = .)),
-           slope = map(model, coef),
-           start_value = map_dbl(data, ~min(.$concentration, na.rm=T)),
+           model_summary = map(model, summary),
+           model = map(model, tidy)) %>%
+    unnest(model) %>%
+    filter(term == "time") %>%
+    mutate(start_value = map_dbl(data, ~min(.$concentration, na.rm=T)),
            n     = map_df(data, tally)$n,
-           r2    = map(model, summary),
-           r2    = map_dbl(r2, "r.squared"),
+           r2    = map_dbl(model_summary, "r.squared"),
            temp  = map_dbl(data, ~mean(.$tempC)),
            datetime_start = map_dbl(data, ~min(.$datetime, na.rm=T)),
            datetime_start = as_datetime(datetime_start),
            datetime_end = map_dbl(data, ~max(.$datetime, na.rm=T)),
            datetime_end = as_datetime(datetime_end)) %>%
-    unnest_wider(slope) %>%
     rename(n_obs_included_in_lm = n) %>%
     filter(start_value < cutoff_start_value,
            n_obs_included_in_lm > number_of_observations_required) %>%
-    mutate(slope_concentration_hr = time*3600,
-           station = station) -> diffusive_results
+    mutate(slope_concentration_hr = estimate*3600,
+           slope_standard_error = std.error*3600,
+           station = station) %>%
+    select(PumpCycle, station, slope_concentration_hr,slope_standard_error,p_value = p.value, temp, n_obs_included_in_lm,r2, datetime_start,datetime_end) -> diffusive_results
 
 if(Hutchinson_Mosier_correction) {
   diffusive_dataset %>%
@@ -133,10 +136,10 @@ if(Hutchinson_Mosier_correction) {
   diffusive_results %>%
     left_join(hmr_results,
                     by = join_by(station, PumpCycle)) %>%
-    select(station,datetime_start,datetime_end,slope_concentration_hr,n_obs_included_in_lm, r2,temp, hmr_slope:method)-> diffusive_flux
+    select(station,datetime_start,datetime_end,slope_concentration_hr,slope_standard_error,n_obs_included_in_lm, r2,temp, hmr_slope:method)-> diffusive_flux
 } else {
       diffusive_results %>%
-        select(station,datetime_start,datetime_end,slope_concentration_hr,n_obs_included_in_lm, r2,temp)-> diffusive_flux
+        select(station,datetime_start,datetime_end,slope_concentration_hr,slope_standard_error,n_obs_included_in_lm, r2,temp)-> diffusive_flux
     }
 
   plotting_data <- dif_check %>%
