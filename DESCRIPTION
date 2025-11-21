@@ -1,17 +1,36 @@
 Package: FluxSeparator
-Type: Package
-Title: Separation of diffusive and ebullitive fluxes.
-Version: 0.1.0
-Author: Jonas Stage Sø, Kaj Sand-Jensen, Theis Kragh
-Year: 2024
-Maintainer: Jonas Stage Sø <Jonassoe@biology.sdu.dk>
-Description: Separates the diffusive and ebullitive fluxes based on a running variance approach, as used in the scientific paper Sø et al. (2024).
-  Aids the import of files from the DIY CH4 and CO2 sensors.
-URL: https://doi.org/10.5281/zenodo.8297154
-License: MIT License
+Title: FluxSeparator - Separation of Diffusive and Ebullitive Fluxes
+Version: 1.0.1
+Authors@R: c(
+    person("Jonas Stage", "Sø", , "Jonassoe@biology.sdu.dk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3222-3706", GitHub = "https://github.com/JonasStage/FluxSeparator")),
+    person("Kaj", "Sand-Jensen", , "ksandjensen@bio.ku.dk", role = "ctb",
+           comment = c(ORCID = "0000-0002-9760-2571")),
+    person("Theis", "Kragh", , "tkragh@biology.sdu.dk", role = "ctb",
+           comment = c(ORCID = "0000-0002-9760-2571"))
+  )
+Description: Separates the diffusive and ebullitive fluxes based on a
+    running variance approach.
+License: MIT + file LICENSE
+URL: https://doi.org/10.1029/2024JG008035
 Encoding: UTF-8
-LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
 Depends: 
-    R (>= 2.10), lubridate (>= 1.9.2), tidyverse (>= 2.0.0), TTR (>= 0.24.3), ggpubr (>= 0.6.0), HMR (>= 1.0.4), broom (>= 1.0.7)
+    broom,
+    devtools,
+    dplyr,
+    ggplot2,
+    ggpubr,
+    HMR,
+    lubridate,
+    purrr,
+    R (>= 3.5),
+    readr,
+    rlang,
+    stringr,
+    tidyr,
+    TTR
 Imports: 
-    lubridate
+    magrittr
+LazyData: true

@@ -17,7 +17,8 @@ remotes::install_github('JonasStage/FluxSeparator')
 
 ## Online shiny website
 I often have students or collaborators using the sensors, which meant I needed to make a user-friendly way of using the package and self-made sensors. Thus I created a website which allows the user to separate and calculate fluxes. The website might be a bit slow, but can be very helpful for people who are not familiar with R. It might also be easier to determine the correct running variance cutoff, but I'll let that be up to you to try. You can find the website [here](https://ecoshiny.sdu.dk/Methane_sensor_calculation/). 
-A little warning, as the website might not be capable of handling big (> 10-20 MB) files, which means it might crash midway. 
+
+A small warning, as the website might not be capable of handling big (> 10-20 MB) files, which means it might crash midway. 
 
 ## Functions
 As of now the package consists of four functions and one dataset. A quick walkthrough of the functions is listed here, for more information and examples on usage see the R documentation of each function:

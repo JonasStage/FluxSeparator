@@ -3,3 +3,5 @@
 ^/ignore_things$
 ^data-raw$
 ^/ignore_things/ignored\.R$
+^LICENSE\.md$
+^/data/DIY_sensor_data\.csv$
