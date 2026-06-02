@@ -1,8 +1,26 @@
 # FluxSeparator - Separation of diffusive and ebullitive fluxes
-
-
 This R-package is dedicated to separation and calculation of diffusive and ebullitive (bubble) fluxes. 
 Determination of ebullitive events is characterized by sudden increase in concentration over a short period of time. Thus, to determine ebullitive events a running variance approach is used. If the running variance is above a user-set threshold value, the data is considered an ebullitive event. Ebullitive events can then be calculated as the difference from the lowest concentration value to either the highest or the last value. Furthermore, correct identification of ebullitive events can be visually inspected when using the function. The functions also allows for several parameters to be changed, for full list of parameters see the R documentation for each function (called by ?_function_). The function for diffusive flux also looks for ebullitive events, to avoid diffusive flux being calculated post an ebullitive event. This function can likewise be turned off.   
+
+## Table of contents
+
+* [Now live on CRAN](#now-live-on-cran)
+* [Citing this package](#citing-this-package)
+* [Online shiny website](#online-shiny-website)
+* [Installation](#installation)
+* [Functions](#functions)
+  * [Read DIY sensor files](#read-diy-sensor-files)
+  * [Load data](#load-data)
+  * [Ebullitive flux](#ebullitive-flux)
+  * [Diffusive flux](#diffusive-flux)
+  * [Conversion from ppm h<sup>-1</sup> to µmol m<sup>-2</sup> h<sup>-1</sup>](#conversion-from-ppm-h-1-to-%C2%B5mol-m-2-h-1)
+* [Citations](#citations)
+
+## Now live on CRAN 
+
+We are now live on CRAN, so you can download the library through CRAN and find the documentation [here](https://cran.rstudio.com/web/packages/FluxSeparator/).
+
+## Citing this package
 
 For citing this package follow the instructions on https://zenodo.org/doi/10.5281/zenodo.8297153
 
@@ -11,15 +29,19 @@ Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements 
 
 Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. [DOI](https://doi.org/10.5281/zenodo.8297154)
 
-```
-remotes::install_github('JonasStage/FluxSeparator')
-```
-
 ## Online shiny website
 I often have students or collaborators using the sensors, which meant I needed to make a user-friendly way of using the package and self-made sensors. Thus I created a website which allows the user to separate and calculate fluxes. The website might be a bit slow, but can be very helpful for people who are not familiar with R. It might also be easier to determine the correct running variance cutoff, but I'll let that be up to you to try. You can find the website [here](https://ecoshiny.sdu.dk/Methane_sensor_calculation/). 
 
 A small warning, as the website might not be capable of handling big (> 10-20 MB) files, which means it might crash midway. 
 
+## Installation
+The package can be installed using CRAN or from github.
+
+```
+install.packages("FluxSeparator")
+# OR
+# remotes::install_github('JonasStage/FluxSeparator')
+```
 ## Functions
 As of now the package consists of four functions and one dataset. A quick walkthrough of the functions is listed here, for more information and examples on usage see the R documentation of each function:
 
