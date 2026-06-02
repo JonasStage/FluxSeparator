@@ -1,3 +1,5 @@
+# FluxSeparator (development version)
+
 # FluxSeparator 2.0.0
 * Included a shiny app `FluxSeparatorApp()`
   * The app helps visualize the process of determining diffusive and ebullitive fluxes
