@@ -1,0 +1,8 @@
+DIY_sensor_data         Data from Lake Lyng
+FluxSeparator-package   FluxSeparator: Separation of Diffusive and
+                        Ebullitive Fluxes
+FluxSeparatorApp        FluxSeparator Shiny App
+diffusive_flux          Diffusive flux
+ebullitive_flux         Ebullitive flux
+ppm_to_umol             ppm_to_µmol
+read_CH4_files          read_CH4_files

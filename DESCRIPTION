@@ -1,36 +1,53 @@
 Package: FluxSeparator
-Title: FluxSeparator - Separation of Diffusive and Ebullitive Fluxes
+Title: Separation of Diffusive and Ebullitive Fluxes
 Version: 1.0.1
 Authors@R: c(
     person("Jonas Stage", "Sø", , "Jonassoe@biology.sdu.dk", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-3222-3706", GitHub = "https://github.com/JonasStage/FluxSeparator")),
+           comment = c(ORCID = "0000-0002-3222-3706")),
     person("Kaj", "Sand-Jensen", , "ksandjensen@bio.ku.dk", role = "ctb",
-           comment = c(ORCID = "0000-0002-9760-2571")),
+           comment = c(ORCID = "0000-0003-2534-4638")),
     person("Theis", "Kragh", , "tkragh@biology.sdu.dk", role = "ctb",
            comment = c(ORCID = "0000-0002-9760-2571"))
   )
-Description: Separates the diffusive and ebullitive fluxes based on a
-    running variance approach.
+Description: Separates diffusive and ebullitive (bubble) fluxes from
+    continuous concentration measurements using a running variance approach.
+    Ebullitive events are identified when the running variance exceeds a
+    user-set threshold. Diffusive fluxes are calculated via linear regression
+    on the non-ebullitive portion of the data. See Sø et al. (2024)
+    <doi:10.1029/2024JG008035> for details.
 License: MIT + file LICENSE
-URL: https://doi.org/10.1029/2024JG008035
+URL: https://github.com/JonasStage/FluxSeparator,
+    https://doi.org/10.1029/2024JG008035
+BugReports: https://github.com/JonasStage/FluxSeparator/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Depends: 
+Depends:
+    R (>= 4.1.0)
+Imports:
     broom,
-    devtools,
     dplyr,
+    DT,
     ggplot2,
     ggpubr,
+    graphics,
     HMR,
     lubridate,
+    magrittr,
     purrr,
-    R (>= 3.5),
     readr,
     rlang,
+    shiny,
+    shinydashboard,
+    stats,
     stringr,
     tidyr,
-    TTR
-Imports: 
-    magrittr
+    TTR,
+    patchwork
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
 LazyData: true

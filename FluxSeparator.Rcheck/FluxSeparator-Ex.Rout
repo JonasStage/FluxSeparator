@@ -1,0 +1,196 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "FluxSeparator"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('FluxSeparator')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("DIY_sensor_data")
+> ### * DIY_sensor_data
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: DIY_sensor_data
+> ### Title: Data from Lake Lyng
+> ### Aliases: DIY_sensor_data
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(DIY_sensor_data)
+> head(DIY_sensor_data)
+# A tibble: 6 × 12
+  datetime               RH tempC CH4smV K33_RH K33_Temp K33_CO2 SampleNumber
+  <dttm>              <dbl> <dbl>  <dbl>  <dbl>    <dbl>   <dbl>        <dbl>
+1 2021-09-28 03:11:35  73.3  19.8   493.   44.2     28.4     387            1
+2 2021-09-28 03:11:37  73.4  18     493.   44.2     28.4     387            2
+3 2021-09-28 03:11:39  73.3  17.9   493.   44.2     28.4     387            3
+4 2021-09-28 03:11:41  73.3  17.9   493.   44.2     28.4     387            4
+5 2021-09-28 03:11:43  73.3  17.9   493.   44.2     28.4     387            5
+6 2021-09-28 03:11:45  73.3  17.9   493.   44.2     28.4     387            6
+# ℹ 4 more variables: PumpCycle <dbl>, pred_CH4 <dbl>, station <dbl>,
+#   sensor <dbl>
+> 
+> 
+> 
+> cleanEx()
+> nameEx("FluxSeparatorApp")
+> ### * FluxSeparatorApp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: FluxSeparatorApp
+> ### Title: FluxSeparator Shiny App
+> ### Aliases: FluxSeparatorApp
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("diffusive_flux")
+> ### * diffusive_flux
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: diffusive_flux
+> ### Title: Diffusive flux
+> ### Aliases: diffusive_flux
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ebullitive_flux")
+> ### * ebullitive_flux
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ebullitive_flux
+> ### Title: Ebullitive flux
+> ### Aliases: ebullitive_flux
+> 
+> ### ** Examples
+> 
+> library(FluxSeparator)
+> 
+> data(DIY_sensor_data)
+> 
+> DIY_sensor_data %>%
++   ebullitive_flux()
+# A tibble: 2 × 10
+# Groups:   station [1]
+  station PumpCycle datetime_start      datetime_end       
+    <dbl>     <dbl> <dttm>              <dttm>             
+1       1         1 2021-09-28 03:11:35 2021-09-28 03:51:37
+2       1         2 2021-09-28 04:11:35 2021-09-28 04:51:36
+# ℹ 6 more variables: sum_bubbles_concentration <dbl>, n_bubbles <dbl>,
+#   pumpcycle_duration_hr <dbl>, temp <dbl>, bubbles_per_time <dbl>,
+#   concentration_per_time <dbl>
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ppm_to_umol")
+> ### * ppm_to_umol
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ppm_to_umol
+> ### Title: ppm_to_µmol
+> ### Aliases: ppm_to_umol
+> 
+> ### ** Examples
+> 
+> # Convert a single value
+> ppm_to_umol(pressure = 101325, concentration = 10,
++             volume = 0.01, temperature_C = 20, area = 0.05)
+[1] 83.14702
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("read_CH4_files")
+> ### * read_CH4_files
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: read_CH4_files
+> ### Title: read_CH4_files
+> ### Aliases: read_CH4_files
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D library(FluxSeparator)
+> ##D 
+> ##D # read in model coef
+> ##D model_coef <- read_csv("model_coef.csv")
+> ##D 
+> ##D # path to DIY sensors files
+> ##D path_to_files <- list.files(pattern = ".csv")
+> ##D 
+> ##D # create data frame for path, sensor and station.
+> ##D data_path <- tibble(path = path_to_files,
+> ##D                     sensor = c(1, 2, 3, 4),
+> ##D                     station = c(1, 2, 4, 3))
+> ##D 
+> ##D 
+> ##D # join with model_coef and calculate CH4 in ppm.
+> ##D read_CH4_files(data_path, path,
+> ##D                model_coef_data = model_coef)
+> ##D 
+> ##D #### Example using join_model_coef = FALSE ####
+> ##D 
+> ##D # join with model_coef.
+> ##D joined_data_path <- left_join(data_path, model_coef, by = join_by(sensor))
+> ##D 
+> ##D # calculate CH4 in ppm.
+> ##D read_CH4_files(joined_data_path,
+> ##D                path,
+> ##D                join_model_coef = FALSE)
+> ## End(Not run)
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.895 0.062 0.972 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

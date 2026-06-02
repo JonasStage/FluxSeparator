@@ -54,7 +54,7 @@ A dataset is included which holds two runs (PumpCycle), with the first only expe
 ### Ebullitive flux
 ```
 # Load dataset
-DIY_sensor_data <-  data(DIY_sensor_data)
+data(DIY_sensor_data)
 
 ebul_flux <- DIY_sensor_data %>%
                ebullitive_flux()
@@ -64,7 +64,7 @@ The _ebullitive_flux_ function allows for identification of ebullitive events in
 ### Diffusive flux
 ```
 # Load dataset
-DIY_sensor_data <-  data(DIY_sensor_data)
+data(DIY_sensor_data)
 
 diff_flux <- DIY_sensor_data %>%
                diffusive_flux()

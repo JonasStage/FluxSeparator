@@ -1,0 +1,133 @@
+---
+title: "Getting Started with FluxSeparator"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with FluxSeparator}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+```
+
+## Overview
+
+**FluxSeparator** separates diffusive and ebullitive (bubble) methane fluxes
+from continuous concentration measurements. It uses a running variance approach
+to identify sudden concentration increases caused by ebullition, then calculates
+diffusive flux from the remaining data using linear regression.
+
+For methodological details, see
+[Sø et al. (2024)](https://doi.org/10.1029/2024JG008035).
+
+## Installation
+
+Install the development version from GitHub:
+
+```r
+remotes::install_github("JonasStage/FluxSeparator")
+```
+
+## Loading example data
+
+The package includes a small dataset from Lake Lyng with two pump cycles: one
+with only diffusive flux and one with an ebullitive event.
+
+```{r load-data}
+library(FluxSeparator)
+
+data(DIY_sensor_data)
+str(DIY_sensor_data)
+```
+
+## Calculating ebullitive flux
+
+The `ebullitive_flux()` function identifies bubble events using a running
+variance threshold. When the running variance exceeds `runvar_cutoff`, the
+data is flagged as an ebullitive event.
+
+```{r ebullitive}
+ebul_flux <- ebullitive_flux(DIY_sensor_data, show_plots = FALSE)
+ebul_flux
+```
+
+### Key parameters
+
+- **`runvar_cutoff`** (default: 0.5): Lower values detect more bubbles. Start
+  high and decrease until you capture the events you see in the data.
+- **`IndexSpan`** (default: 30): How many observations to include before/after
+  each detected event.
+- **`top_selection`**: Use `"last"` (default) or `"max"` to determine the peak
+  concentration of each bubble.
+- **`show_plots`**: Set to `TRUE` for interactive visual inspection.
+
+## Calculating diffusive flux
+
+The `diffusive_flux()` function first removes ebullitive events (unless
+`look_for_bubbles = FALSE`), then fits a linear model to the remaining
+concentration data to estimate the diffusive flux.
+
+```{r diffusive}
+diff_flux <- diffusive_flux(DIY_sensor_data,
+                            cutoff_start_value = 5,
+                            show_plots = FALSE)
+diff_flux
+```
+
+### Key parameters
+
+- **`cutoff_start_value`**: Maximum starting concentration for a cycle to be
+  included. Use `Inf` (default) to include all cycles.
+- **`remove_observations_prior`** (default: 200): Skip the first N observations
+  to allow the chamber to equilibrate.
+- **`number_of_observations_used`** (default: 400): Number of observations for
+  the linear regression.
+- **`look_for_bubbles`** (default: `TRUE`): Set to `FALSE` for gases where
+  ebullition is unlikely (e.g., CO2).
+
+## Unit conversion
+
+Convert from ppm per hour to µmol m⁻² h⁻¹ using the ideal gas law:
+
+```{r conversion}
+ppm_to_umol(
+  pressure = 101325,     # Pa (standard atmospheric)
+  concentration = 10,    # ppm/hr
+  volume = 0.01,         # m³
+  temperature_C = 20,    # °C
+  area = 0.05            # m²
+)
+```
+
+## Choosing the right `runvar_cutoff`
+
+The most important parameter is `runvar_cutoff`. To find the best value:
+
+1. Run `ebullitive_flux()` with `show_plots = TRUE`
+2. Inspect the running variance plots
+3. Adjust `runvar_cutoff` until bubble events are correctly identified
+4. Use the **same** `runvar_cutoff` for both `ebullitive_flux()` and
+   `diffusive_flux()`
+
+## Working with plots
+
+Both functions can return plot objects as an attribute when `show_plots = TRUE`:
+
+```{r plots, eval = FALSE}
+result <- ebullitive_flux(DIY_sensor_data, show_plots = TRUE)
+
+# Access individual plots
+plots <- attr(result, "plots")
+```
+
+## Citing FluxSeparator
+
+```{r citation}
+citation("FluxSeparator")
+```

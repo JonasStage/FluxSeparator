@@ -5,3 +5,13 @@
 ^/ignore_things/ignored\.R$
 ^LICENSE\.md$
 ^/data/DIY_sensor_data\.csv$
+^\.DS_Store$
+^\.RData$
+^\.Rhistory$
+^\.git$
+^\.gitignore$
+^README\.md$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
+^\.positai$
+^\.claude$

@@ -1,0 +1,33 @@
+
+R version 4.5.0 (2025-04-11) -- "How About a Twenty-Six"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+Warning message:
+package 'testthat' was built under R version 4.5.2 
+> library(FluxSeparator)
+> 
+> test_check("FluxSeparator")
+Adding missing grouping variables: `PumpCycle`
+Adding missing grouping variables: `PumpCycle`
+Adding missing grouping variables: `PumpCycle`
+[ FAIL 0 | WARN 118 | SKIP 0 | PASS 42 ]
+
+[ FAIL 0 | WARN 118 | SKIP 0 | PASS 42 ]
+> 
+> proc.time()
+   user  system elapsed 
+  2.250   0.135   2.404 
