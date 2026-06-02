@@ -1,3 +1,9 @@
+# FluxSeparator 2.0.0
+* Included a shiny app `FluxSeparatorApp()`
+  * The app helps visualize the process of determining diffusive and ebullitive fluxes
+  * Allows the user to mark areas of diffusive fluxes by dragging the mouse. 
+  * Can be used with DIY sensors or common datatypes like .csv and .data. 
+
 # FluxSeparator 1.0.1
 
 * Moved all dependencies from `Depends` to `Imports` for CRAN compliance.

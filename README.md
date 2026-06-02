@@ -18,7 +18,7 @@ Determination of ebullitive events is characterized by sudden increase in concen
 
 ## Now live on CRAN 
 
-We are now live on CRAN, so you can download the library through CRAN and find the documentation [here](https://cran.rstudio.com/web/packages/FluxSeparator/).
+We are now live on CRAN, so you can download the library through CRAN and find the documentation [here]<link href="https://cran.rstudio.com/web/packages/FluxSeparator/" rel="canonical">.
 
 ## Citing this package
 

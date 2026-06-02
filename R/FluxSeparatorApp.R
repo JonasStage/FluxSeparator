@@ -114,14 +114,14 @@ FluxSeparatorApp <- function(...) {
 
                      <h2>Citing this tool</h2>
                      Please cite the <a href='https://doi.org/10.1029/2024JG008035'> paper introducing the R-package</a> and the <a href='https://doi.org/10.5281/zenodo.8297154'> R-package </a> when using this tool: <br><br>
-                     <em>Sø, J. S., Sand-Jensen, K., & Kragh, T. (2024). Self-made equipment for automatic methane diffusion and ebullition measurements from aquatic environments. Journal of Geophysical Research: Biogeosciences, 129, e2024JG008035. https://doi.org/10.1029/2024JG008035</em><br><br>
-                     <em>Sø, J. S., Sand-Jensen, K., & Kragh, T. (2023). FluxSeparator - Separation of diffusive and ebullitive fluxes (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154</em><br>
+                     <em>S\u00f8, J. S., Sand-Jensen, K., & Kragh, T. (2024). Self-made equipment for automatic methane diffusion and ebullition measurements from aquatic environments. Journal of Geophysical Research: Biogeosciences, 129, e2024JG008035. https://doi.org/10.1029/2024JG008035</em><br><br>
+                     <em>S\u00f8, J. S., Sand-Jensen, K., & Kragh, T. (2023). FluxSeparator - Separation of diffusive and ebullitive fluxes (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.8297154</em><br>
 
                      <h2>Wrapping up</h2>
 
                      I expect there will be encounters of errors while using the website, which I would gladly try to accomodate, so please let me know.
                      Additionally, don't hesitate to contact me if you have ideas on how to improve this website.<br><br>
-                     This website is made by <a href='mailto:Jonassoe@biology.sdu.dk'</a> Jonas Stage Sø </a>, Ph.D., Postdoc at The University of Southern Denmark. <br><br>
+                     This website is made by <a href='mailto:Jonassoe@biology.sdu.dk'</a> Jonas Stage S\u00f8 </a>, Ph.D., Postdoc at The University of Southern Denmark. <br><br>
 
                      <center>
                      <a href='https://www.researchgate.net/profile/Jonas-Stage-So?ev=hdr_xprf'><i class='fa-brands fa-researchgate' style='font-size: 6em'></i></a>
@@ -199,7 +199,7 @@ FluxSeparatorApp <- function(...) {
                                   choices = c(colnames(data()))),
                       radioButtons("unit_concentration1", "Select units for the first concentration column",
                                    choices = c("ppm","ppb")),
-                      selectInput("airt_column","Select temperature column (°C)",
+                      selectInput("airt_column","Select temperature column (\u00b0C)",
                                   choices = c(colnames(data()),NA_character_)),
                       selectInput("concentration_values_co2_column","Select second concentration column if applicable",
                                   choices = c(colnames(data()),NA_character_)),
@@ -717,7 +717,7 @@ FluxSeparatorApp <- function(...) {
         if (nchar(input$second_con_name)==0) {
 
           results_string <- paste0(input$first_con_name,": slope = ", round(slope_ch4*3600, 2), " (ppm h<sup>-1</sup>)",
-                                   ", flux = ", round(ch4_flux*3600, 2), " (µmol m<sup>-2</sup> h<sup>-1</sup>)",
+                                   ", flux = ", round(ch4_flux*3600, 2), " (\u03bcmol m<sup>-2</sup> h<sup>-1</sup>)",
                                    ", R<sup>2</sup> = ", round(r2_ch4, 2))
 
           results <- data.frame("processing_date" = strftime(Sys.time(), "%Y-%m-%d %H:%M:%S", tz="GMT"),
@@ -746,11 +746,11 @@ FluxSeparatorApp <- function(...) {
           } else {}
 
           results_string <- paste0(input$first_con_name,": slope = ", round(slope_ch4*3600, 2), " (ppm h<sup>-1</sup>)",
-                                   ", flux = ", round(ch4_flux*3600, 2), " (µmol m<sup>-2</sup> h<sup>-1</sup>)",
+                                   ", flux = ", round(ch4_flux*3600, 2), " (\u03bcmol m<sup>-2</sup> h<sup>-1</sup>)",
                                    ", R<sup>2</sup> = ", round(r2_ch4, 2),
                                    "<br>",
                                    input$second_con_name,": slope = ", round(slope_co2*3600, 2), " (ppm h<sup>-1</sup>)",
-                                   ", flux = ", round(co2_flux*3600, 2), " (µmol m<sup>-2</sup> h<sup>-1</sup>)",
+                                   ", flux = ", round(co2_flux*3600, 2), " (\u03bcmol m<sup>-2</sup> h<sup>-1</sup>)",
                                    ", R<sup>2</sup> = ", round(r2_co2, 2))
 
           results <- data.frame("processing_date" = strftime(Sys.time(), "%Y-%m-%d %H:%M:%S", tz="GMT"),
@@ -961,7 +961,7 @@ FluxSeparatorApp <- function(...) {
                                                datetime_start = strftime(datetime_start, format = '%Y-%m-%d %R'),
                                                datetime_end = strftime(datetime_end, format = '%Y-%m-%d %R')) %>%
                                         rename("concentration_per_hour (ppm h-1)" = concentration_per_hour,
-                                               'airt (°C)' = temp),
+                                               'airt (\u00b0C)' = temp),
                                       options = list(pageLength = 10, autoWidth = TRUE),
                                       rownames= FALSE)
 
@@ -972,7 +972,7 @@ FluxSeparatorApp <- function(...) {
       content = function(file) {
         fluxsep_ebul()$bubbles %>%
           rename("concentration_per_hour (ppm h-1)" = concentration_per_time,
-                 'airt (°C)' = temp) %>%
+                 'airt (\u00b0C)' = temp) %>%
           write.csv(file, row.names = FALSE)
       }
     )
@@ -1062,7 +1062,7 @@ FluxSeparatorApp <- function(...) {
                                            datetime_start = strftime(datetime_start, format = '%Y-%m-%d %R'),
                                            datetime_end = strftime(datetime_end, format = '%Y-%m-%d %R')) %>%
                                     rename("slope_concentration_hr (ppm h-1)" = slope_concentration_hr,
-                                           'airt (°C)' = temp),
+                                           'airt (\u00b0C)' = temp),
                                   options = list(pageLength = 10, autoWidth = TRUE),
                                   rownames= FALSE)
 
@@ -1073,7 +1073,7 @@ FluxSeparatorApp <- function(...) {
       content = function(file) {
         fluxsep_diff()$diff %>%
           rename("slope_concentration_hr (ppm h-1)" = slope_concentration_hr,
-                 'airt (°C)' = temp) %>%
+                 'airt (\u00b0C)' = temp) %>%
           write.csv(file, row.names = FALSE)
       }
     )
@@ -1098,7 +1098,7 @@ FluxSeparatorApp <- function(...) {
 
       content = function(file) {
         data() %>%
-          rename('rh (%)' = rh, 'airt (°C)' = airt, "H2O (ppm)" = water)  %>%
+          rename('rh (%)' = rh, 'airt (\u00b0C)' = airt, "H2O (ppm)" = water)  %>%
           write.csv(file, row.names = FALSE)
       })
 
