@@ -5,6 +5,7 @@ Determination of ebullitive events is characterized by sudden increase in concen
 ## Table of contents
 
 * [Now live on CRAN](#now-live-on-cran)
+* [Updates](#updates)
 * [Citing this package](#citing-this-package)
 * [Online shiny website](#online-shiny-website)
 * [Installation](#installation)
@@ -19,6 +20,14 @@ Determination of ebullitive events is characterized by sudden increase in concen
 ## Now live on CRAN 
 
 We are now live on CRAN, so you can download the library through CRAN and find the documentation [here]<link href="https://cran.rstudio.com/web/packages/FluxSeparator/" rel="canonical">.
+
+## Updates
+
+Version 2.0.0 is out! 
+* Includes a shiny app ```FluxSeparatorApp()```
+  * The app helps visualize the process of determining diffusive and ebullitive fluxes
+  * Allows the user to mark areas of diffusive fluxes by dragging the mouse. 
+  * Can be used with [DIY sensors](https://doi.org/10.1029/2024JG008035) or common datatypes like .csv, .txt and .data. 
 
 ## Citing this package
 
