@@ -1,6 +1,6 @@
 Package: FluxSeparator
 Title: Separation of Diffusive and Ebullitive Fluxes
-Version: 2.0.0.9000
+Version: 2.0.1
 Authors@R: c(
     person("Jonas Stage", "Sø", , "Jonassoe@biology.sdu.dk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3222-3706")),
