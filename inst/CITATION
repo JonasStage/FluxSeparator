@@ -1,12 +1,12 @@
 bibentry(
-  bibtype  = "Article",
-  title    = "Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments",
+  bibtype = "Manual",
+  title = "FluxSeparator: Separation of Diffusive and Ebullitive Fluxes",
   author   = c(
     person("Jonas Stage", "Sø"),
     person("Kaj", "Sand-Jensen"),
     person("Theis", "Kragh")
   ),
-  journal  = "Journal of Geophysical Research: Biogeosciences",
-  year     = "2024",
-  doi      = "10.1029/2024JG008035"
+  year = "2026",
+  doi = "https://doi.org/10.32614/CRAN.package.FluxSeparator",
+  url = https://cran.r-project.org/web/packages/FluxSeparator/"
 )

@@ -16,8 +16,8 @@ Description: Separates diffusive and ebullitive (bubble) fluxes from
     on the non-ebullitive portion of the data. See Sø et al. (2024)
     <doi:10.1029/2024JG008035> for details.
 License: MIT + file LICENSE
-URL: https://github.com/JonasStage/FluxSeparator,
-    https://doi.org/10.1029/2024JG008035
+URL:https://cran.r-project.org/web/packages/FluxSeparator, 
+    https://github.com/JonasStage/FluxSeparator
 BugReports: https://github.com/JonasStage/FluxSeparator/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
