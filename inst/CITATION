@@ -7,6 +7,5 @@ bibentry(
     person("Theis", "Kragh")
   ),
   year = "2026",
-  doi = "https://doi.org/10.32614/CRAN.package.FluxSeparator",
-  url = https://cran.r-project.org/web/packages/FluxSeparator/"
+  doi = "10.32614/CRAN.package.FluxSeparator",
 )

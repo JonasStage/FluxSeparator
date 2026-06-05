@@ -1,4 +1,5 @@
-# FluxSeparator (development version)
+# FluxSeparator 2.0.1
+* Minor update to citations
 
 # FluxSeparator 2.0.0
 * Included a shiny app `FluxSeparatorApp()`

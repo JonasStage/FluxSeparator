@@ -23,20 +23,23 @@ We are now live on CRAN, so you can download the library through CRAN and find t
 
 ## Updates
 
+Version 2.0.1 is here.
+* Small update to citation.
+
 Version 2.0.0 is out! 
-* Includes a shiny app ```FluxSeparatorApp()```
-  * The app helps visualize the process of determining diffusive and ebullitive fluxes
+* Includes a shiny app ```FluxSeparatorApp()```.
+  * The app helps visualize the process of determining diffusive and ebullitive fluxes.
   * Allows the user to mark areas of diffusive fluxes by dragging the mouse. 
-  * Can be used with [DIY sensors](https://doi.org/10.1029/2024JG008035) or common datatypes like .csv, .txt and .data. 
+  * Can be used with [DIY sensors]<link href="https://doi.org/10.1029/2024JG008035" rel = "canonical"> or common datatypes like .csv, .txt and .data. 
 
 ## Citing this package
 
 For citing this package follow the instructions on https://zenodo.org/doi/10.5281/zenodo.8297153
 
 Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. 
-[Sø et al 2024](https://doi.org/10.1029/2024JG008035)
+[Sø et al 2024]<link href="https://doi.org/10.1029/2024JG008035" rel = "canonical">
 
-Sø. J.S. (2023). JonasStage/FluxSeparator: v1.0.0 (v1.0.0). Zenodo. [DOI](https://doi.org/10.5281/zenodo.8297154)
+Sø. J.S. (2023). JonasStage/FluxSeparator: v2.0.1 (v2.0.1). Zenodo. [DOI](https://doi.org/10.5281/zenodo.8297154)
 
 ## Online shiny website
 I often have students or collaborators using the sensors, which meant I needed to make a user-friendly way of using the package and self-made sensors. Thus I created a website which allows the user to separate and calculate fluxes. The website might be a bit slow, but can be very helpful for people who are not familiar with R. It might also be easier to determine the correct running variance cutoff, but I'll let that be up to you to try. You can find the website [here](https://ecoshiny.sdu.dk/Methane_sensor_calculation/). 
@@ -127,8 +130,8 @@ The _ppm_to_umol_ function allows for conversion of ppmV h<sup>-1</sup> to µmol
 
 ## Citations
 
-[Sø, J. .S, Sand-Jensen, K., Kragh, T. (2024). Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments](https://doi.org/10.1029/2024JG008035)
+[Sø, J. .S, Sand-Jensen, K., Kragh, T. (2024). Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments]<link href="https://doi.org/10.1029/2024JG008035" rel = "canonical">
 
 
-[Sø, J. S., Sand-Jensen, K., Martinsen, K. T., Polauke, E., Kjær, J. E., Reitzel, K., & Kragh, T. (2023). Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. Science of the Total Environment, 878, 162895.](https://doi.org/10.1016/j.scitotenv.2023.162895)
+[Sø, J. S., Sand-Jensen, K., Martinsen, K. T., Polauke, E., Kjær, J. E., Reitzel, K., & Kragh, T. (2023). Methane and carbon dioxide fluxes at high spatiotemporal resolution from a small temperate lake. Science of the Total Environment, 878, 162895.]<link href="https://doi.org/10.1016/j.scitotenv.2023.162895" rel = "canonical">
 

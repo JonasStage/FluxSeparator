@@ -24,14 +24,14 @@ to identify sudden concentration increases caused by ebullition, then calculates
 diffusive flux from the remaining data using linear regression.
 
 For methodological details, see
-[Sø et al. (2024)](https://doi.org/10.1029/2024JG008035).
+[Sø et al. (2024)]<link href="\doi{10.1029/2024JG008035}" rel = "canonical">.
 
 ## Installation
 
 Install the development version from GitHub:
 
 ```r
-remotes::install_github("JonasStage/FluxSeparator")
+install.packages("FluxSeparator")
 ```
 
 ## Loading example data
