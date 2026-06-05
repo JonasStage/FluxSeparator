@@ -34,17 +34,7 @@ Version 2.0.0 is out!
 
 ## Citing this package
 
-For citing this package follow the instructions on https://zenodo.org/doi/10.5281/zenodo.8297153
-
-Self-Made Equipment for Automatic Methane Diffusion and Ebullition Measurements From Aquatic Environments. 
-[Sø et al 2024]<link href="https://doi.org/10.1029/2024JG008035" rel = "canonical">
-
-Sø. J.S. (2023). JonasStage/FluxSeparator: v2.0.1 (v2.0.1). Zenodo. [DOI](https://doi.org/10.5281/zenodo.8297154)
-
-## Online shiny website
-I often have students or collaborators using the sensors, which meant I needed to make a user-friendly way of using the package and self-made sensors. Thus I created a website which allows the user to separate and calculate fluxes. The website might be a bit slow, but can be very helpful for people who are not familiar with R. It might also be easier to determine the correct running variance cutoff, but I'll let that be up to you to try. You can find the website [here](https://ecoshiny.sdu.dk/Methane_sensor_calculation/). 
-
-A small warning, as the website might not be capable of handling big (> 10-20 MB) files, which means it might crash midway. 
+For citing this package see ```citation("FluxSeparator")```
 
 ## Installation
 The package can be installed using CRAN or from github.
