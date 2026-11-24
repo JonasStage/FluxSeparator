@@ -1,3 +1,5 @@
+# FluxSeparator 2.0.2
+
 # FluxSeparator 2.0.1
 * Minor update to citations
 
