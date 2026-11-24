@@ -4,7 +4,7 @@
 #' spatiotemporal resolution from a small temperate lake. One measurement
 #' containing only diffusive flux and one containing ebullitive events.
 #'
-#' @format A data frame with 2,201 rows and 12 variables:
+#' @format A data frame with 2,400 rows and 12 variables:
 #' \describe{
 #'   \item{datetime}{Date and time of measurement}
 #'   \item{RH}{Relative humidity (percent)}

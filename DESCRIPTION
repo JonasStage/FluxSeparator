@@ -21,7 +21,6 @@ URL: <link href="https://cran.r-project.org/web/packages/FluxSeparator" rel = "c
 BugReports: https://github.com/JonasStage/FluxSeparator/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -51,3 +50,4 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 LazyData: true
+Config/roxygen2/version: 8.1.1

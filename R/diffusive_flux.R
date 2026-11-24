@@ -259,12 +259,14 @@ diffusive_flux <- function(data, concentration_values = "pred_CH4",
       select(.data$station, .data$datetime_start, .data$datetime_end,
              .data$slope_concentration_hr, .data$slope_standard_error,
              .data$n_obs_included_in_lm, .data$r2, .data$temp,
-             .data$hmr_slope:.data$method) -> diff_flux
+             .data$hmr_slope:.data$method) %>%
+      ungroup() -> diff_flux
   } else {
     diffusive_results %>%
       select(.data$station, .data$datetime_start, .data$datetime_end,
              .data$slope_concentration_hr, .data$slope_standard_error,
-             .data$n_obs_included_in_lm, .data$r2, .data$temp) -> diff_flux
+             .data$n_obs_included_in_lm, .data$r2, .data$temp) %>%
+      ungroup() -> diff_flux
   }
 
   plotting_data <- dif_check %>%
@@ -293,7 +295,14 @@ diffusive_flux <- function(data, concentration_values = "pred_CH4",
         p <- ggplot() +
           geom_point(data = plot_raw,
                      aes(.data$datetime, .data$concentration,
-                         group = .data$PumpCycle)) +
+                         group = .data$PumpCycle),
+                     # alpha = 0.5, # Will be implemented when this df only contains data on points not included.
+                     # col = "grey80"
+                     ) +
+          # geom_point(data = plot_lm, # To be implemented, but needs to fix above
+          #            aes(.data$datetime, .data$concentration,
+          #                group = .data$PumpCycle),
+          #            col = "royalblue") +
           geom_smooth(data = plot_lm,
                       aes(.data$datetime, .data$concentration,
                           group = .data$PumpCycle, col = .data$r2),

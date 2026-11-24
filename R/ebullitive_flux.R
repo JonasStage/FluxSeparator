@@ -226,8 +226,8 @@ ebullitive_flux <- function(data,
     full_join(times, by = c("station", "PumpCycle")) %>%
     select(.data$station, .data$PumpCycle, .data$datetime_start,
            .data$datetime_end,
-           .data$sum_bubbles_concentration:.data$concentration_per_time) ->
-    bubbles_found
+           .data$sum_bubbles_concentration:.data$concentration_per_time) %>%
+    ungroup() -> bubbles_found
 
   # --- diagnostic plots -------------------------------------------------------
   plotting_data <- running_var %>%
